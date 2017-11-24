@@ -13,13 +13,12 @@ export class PeliculasService {
   getPopulares() {
     // tslint:disable-next-line:prefer-const
     let url = this.urlMovieDb + '/discover/movie?sort_by=popularity.desc' + this.apiKey + '&language=es&callback=JSONP_CALLBACK';
-    return this.jsonp.get(url).map(res => res.json());
+    return this.jsonp.get(url).map(res => res.json().results);
   }
 
   getEnCartelera() {
     let hoy = new Date();
-    let unaSemanaFuturo = new Date()
-
+    let unaSemanaFuturo = new Date();
     unaSemanaFuturo.setDate(hoy.getDate() + 7);
 
     let url = this.urlMovieDb + '/discover/movie?primary_release_date.gte=' +
@@ -27,9 +26,15 @@ export class PeliculasService {
         '&primary_release_date.lte=' + unaSemanaFuturo.getFullYear() + '-'  + (unaSemanaFuturo.getMonth() + 1) + '-'  +
         unaSemanaFuturo.getDate() + this.apiKey + '&language=es&callback=JSONP_CALLBACK';
 
-    console.log(url);
-    return this.jsonp.get(url).map(res => res.json());
+    return this.jsonp.get(url).map(res => res.json().results);
 
+  }
+
+  getPopularesChicos() {
+    // tslint:disable-next-line:prefer-const
+    let url = this.urlMovieDb + '/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc'
+      + this.apiKey + '&language=es&callback=JSONP_CALLBACK';
+    return this.jsonp.get(url).map(res => res.json().results);
   }
 
 }

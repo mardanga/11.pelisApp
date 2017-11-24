@@ -16,6 +16,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 // rutas
 import { APP_ROUTING } from './routes';
+import { ImagenPortadaPipe } from './pipes/imagen-portada.pipe';
+import { GaleriaComponent } from './components/home/galeria.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { APP_ROUTING } from './routes';
     HomeComponent,
     BuscarComponent,
     DetalleComponent,
-    NavbarComponent
+    NavbarComponent,
+    ImagenPortadaPipe,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,

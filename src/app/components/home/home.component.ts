@@ -8,14 +8,24 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent  {
 
+  cartelera: any;
   populares: any;
+  chicos: any;
+
   constructor(private peliSrv: PeliculasService) {
       this.peliSrv.getEnCartelera()
-        .subscribe(pops => {
-          console.log(pops);
-          this.populares = pops
+        .subscribe(data => {
+          this.cartelera = data;
+        });
+
+      this.peliSrv.getPopulares()
+        .subscribe(data => {
+          this.populares = data;
+        });
+
+      this.peliSrv.getPopularesChicos()
+        .subscribe(data => {
+          this.chicos = data;
         });
    }
-
-
 }
